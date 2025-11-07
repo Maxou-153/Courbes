@@ -11,40 +11,6 @@ import numpy as np
 import scipy
 from scipy.optimize import curve_fit
 
-<<<<<<< HEAD
-point_list = [0.49,0.36,0.36,0.31,0.27,0.25,0.17]
-kz = [0.5,0.75,0.875,1.0,1.125,1.25,1.5]
-
-
-def func(x, a, b, c):
-    return a*x**2+b*x+c
-
-xdata = kz
-ydata = point_list
-
-popt, pconv = curve_fit(func, xdata, ydata)
-
-a, b, c = popt
-print(f"les paramètres ajustés sont : a = {a:.4f}, b = {b:.4f}, c = {c:.4f}")
-
-xfit = np.linspace(min(kz), max(kz), 100)
-yfit = func(xfit, a, b, c)
-
-
-plt.figure(figsize=(10,6))
-
-plt.plot(xdata, ydata, 'o-', label='Ecarts en MPa')
-plt.plot(xfit, yfit, 'r--', label='Ajustement quadratique')
-
-plt.grid()
-plt.xlabel("kz")
-plt.ylabel("E* (MPa)")
-plt.legend()
-plt.title("Ecarts")
-
-plt.show()
-
-=======
 exp = []
 XKz = [0.5, 0.75, 0.875, 1, 1.125, 1.25, 1.5]
 
@@ -156,32 +122,39 @@ logy7 = np.log(E_Es_kz1_5_m)
 
 logx_sub = logx[-3:]
 logy_sub = logy[-3:]
+logy_sub2 = logy2[-3:]
+logy_sub3 = logy3[-3:]
+logy_sub4 = logy4[-3:]
+logy_sub5 = logy5[-3:]
+logy_sub6 = logy6[-3:]
+logy_sub7 = logy7[-3:]
+
 
 n, loga = np.polyfit(logx_sub, logy_sub, 1)
 a = np.exp(loga)
 exp.append(n)
 
-n2, loga2 = np.polyfit(logx, logy2, 1)
+n2, loga2 = np.polyfit(logx_sub, logy_sub2, 1)
 a2 = np.exp(loga2)
 exp.append(n2)
 
-n3, loga3 = np.polyfit(logx, logy3, 1)
+n3, loga3 = np.polyfit(logx_sub, logy_sub3, 1)
 a3 = np.exp(loga3)
 exp.append(n3)
 
-n4, loga4 = np.polyfit(logx, logy4, 1)
+n4, loga4 = np.polyfit(logx_sub, logy_sub4, 1)
 a4 = np.exp(loga4)
 exp.append(n4)
 
-n5, loga5 = np.polyfit(logx, logy5, 1)
+n5, loga5 = np.polyfit(logx_sub, logy_sub5, 1)
 a5 = np.exp(loga5)
 exp.append(n5)
 
-n6, loga6 = np.polyfit(logx, logy6, 1)
+n6, loga6 = np.polyfit(logx_sub, logy_sub6, 1)
 a6 = np.exp(loga6)
 exp.append(n6)
 
-n7, loga7 = np.polyfit(logx, logy7, 1)
+n7, loga7 = np.polyfit(logx_sub, logy_sub7, 1)
 a7 = np.exp(loga7)
 exp.append(n7)
 
@@ -236,17 +209,17 @@ yfit7 = func(xfit, a7, n7)
 
 """--- Plot curve fit ---"""
 
-# plt.plot(xfit, yfit1, '.r--', label=f'Fit : y = {a:.2f}.x^{n:.2f}')
-# plt.plot(xfit, yfit2, 'c--', label=f'Fit : y = {a2:.2f}.x^{n2:.2f}')
-# plt.plot(xfit, yfit3, 'b--', label=f'Fit : y = {a3:.2f}.x^{n3:.2f}')
-# plt.plot(xfit, yfit4, 'm--', label=f'Fit : y = {a4:.2f}.x^{n4:.2f}')
-# plt.plot(xfit, yfit5, 'k--', label=f'Fit : y = {a5:.2f}.x^{n5:.2f}')
-# plt.plot(xfit, yfit6, 'g--', label=f'Fit : y = {a6:.2f}.x^{n6:.2f}')
-# plt.plot(xfit, yfit7, 'y--', label=f'Fit : y = {a7:.2f}.x^{n7:.2f}')
+plt.plot(xfit, yfit1, '.r--', label=f'Fit : y = {a:.2f}.x^{n:.2f}')
+plt.plot(xfit, yfit2, 'c--', label=f'Fit : y = {a2:.2f}.x^{n2:.2f}')
+plt.plot(xfit, yfit3, 'b--', label=f'Fit : y = {a3:.2f}.x^{n3:.2f}')
+plt.plot(xfit, yfit4, 'm--', label=f'Fit : y = {a4:.2f}.x^{n4:.2f}')
+plt.plot(xfit, yfit5, 'k--', label=f'Fit : y = {a5:.2f}.x^{n5:.2f}')
+plt.plot(xfit, yfit6, 'g--', label=f'Fit : y = {a6:.2f}.x^{n6:.2f}')
+plt.plot(xfit, yfit7, 'y--', label=f'Fit : y = {a7:.2f}.x^{n7:.2f}')
 
 """--- Plot n/kz ---"""
-# plt.figure(figsize=(10,6))
-# plt.plot(XKz, exp, 'o', color='r')
+plt.figure(figsize=(10,6))
+plt.plot(XKz, exp, 'o', color='r')
 
 # plt.grid()
 # plt.xlabel('dens')
@@ -255,4 +228,3 @@ yfit7 = func(xfit, a7, n7)
 # plt.title("Diagramme Gibson-Ashby")
 
 # plt.show()
->>>>>>> ae7d618 (Commit de tous les fichiers pour l'analyse de courbe)
