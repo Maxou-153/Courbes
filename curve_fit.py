@@ -236,7 +236,7 @@ yfit7 = func(xfit, a7, n7)
 
 """--- Plot curve fit ---"""
 
-plt.plot(xfit, yfit1, '.r--', label=f'Fit : y = {a:.2f}.x^{n:.2f}')
+# plt.plot(xfit, yfit1, '.r--', label=f'Fit : y = {a:.2f}.x^{n:.2f}')
 # plt.plot(xfit, yfit2, 'c--', label=f'Fit : y = {a2:.2f}.x^{n2:.2f}')
 # plt.plot(xfit, yfit3, 'b--', label=f'Fit : y = {a3:.2f}.x^{n3:.2f}')
 # plt.plot(xfit, yfit4, 'm--', label=f'Fit : y = {a4:.2f}.x^{n4:.2f}')
