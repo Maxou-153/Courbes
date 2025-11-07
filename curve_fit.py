@@ -11,6 +11,10 @@ import numpy as np
 import scipy
 from scipy.optimize import curve_fit
 
+# plt.rcParams.update({
+#     "text.usetex": True,   # Utiliser LaTeX pour tout le texte
+#     "font.family": "serif",})  # Police à utiliser (ici serif pour LaTeX)
+
 exp = []
 XKz = [0.5, 0.75, 0.875, 1, 1.125, 1.25, 1.5]
 
@@ -35,23 +39,24 @@ E_Es_kz1_125 = [0.09/6.6, 0.28/6.6, 0.46/6.6, 0.76/6.6]
 E_Es_kz1_25 = [0.07/6.6, 0.22/6.6, 0.41/6.6, 0.67/6.6]
 E_Es_kz1_5 = [0.06/6.6, 0.16/6.6, 0.37/6.6, 0.60/6.6]
 
+plt.figure(figsize=(14,8))
 
-# plt.semilogy(X,E_Es_kz05, label='k_z = 0.5')
-# plt.semilogy(X,E_Es_kz075, label='k_z = 0.75')
-# plt.semilogy(X,E_Es_kz0875, label='k_z = 0.875')
-# plt.semilogy(X,E_Es_kz1, label='k_z = 1')
-# plt.semilogy(X,E_Es_kz1_125, label='k_z = 1.125')
-# plt.semilogy(X,E_Es_kz1_25, label='k_z = 1.25')
-# plt.semilogy(X,E_Es_kz1_5, label='k_z = 1.5')
+plt.semilogy(X,E_Es_kz05, '.-', label=r'k_z = 0.5')
+plt.semilogy(X,E_Es_kz075, '.-', label=r'k_z = 0.75')
+plt.semilogy(X,E_Es_kz0875, '.-', label=r'k_z = 0.875')
+plt.semilogy(X,E_Es_kz1, '.-', label=r'k_z = 1')
+plt.semilogy(X,E_Es_kz1_125, '.-', label=r'k_z = 1.125')
+plt.semilogy(X,E_Es_kz1_25, '.-', label=r'k_z = 1.25')
+plt.semilogy(X,E_Es_kz1_5, '.-', label=r'k_z = 1.5')
 
 
-plt.semilogy(X,E_Es_kz05_m,'--', label='k_z_m = 0.5')
-plt.semilogy(X,E_Es_kz075_m,'--', label='k_z_m = 0.75')
-plt.semilogy(X,E_Es_kz0875_m,'--', label='k_z_m = 0.875')
-plt.semilogy(X,E_Es_kz1_m,'--', label='k_z_m = 1')
-plt.semilogy(X,E_Es_kz1_125_m,'--', label='k_z_m = 1.125')
-plt.semilogy(X,E_Es_kz1_25_m,'--', label='k_z_m = 1.25')
-plt.semilogy(X,E_Es_kz1_5_m,'--', label='k_z_m = 1.5')
+plt.semilogy(X,E_Es_kz05_m,'-', label=r'k_z_m = 0.5')
+plt.semilogy(X,E_Es_kz075_m,'-', label=r'k_z_m = 0.75')
+plt.semilogy(X,E_Es_kz0875_m,'-', label=r'k_z_m = 0.875')
+plt.semilogy(X,E_Es_kz1_m,'-', label=r'k_z_m = 1')
+plt.semilogy(X,E_Es_kz1_125_m,'-', label=r'k_z_m = 1.125')
+plt.semilogy(X,E_Es_kz1_25_m,'-', label=r'k_z_m = 1.25')
+plt.semilogy(X,E_Es_kz1_5_m,'-', label=r'k_z_m = 1.5')
 
 # plt.show()
 # assert 0
@@ -209,22 +214,26 @@ yfit7 = func(xfit, a7, n7)
 
 """--- Plot curve fit ---"""
 
-plt.plot(xfit, yfit1, '.r--', label=f'Fit : y = {a:.2f}.x^{n:.2f}')
-plt.plot(xfit, yfit2, 'c--', label=f'Fit : y = {a2:.2f}.x^{n2:.2f}')
-plt.plot(xfit, yfit3, 'b--', label=f'Fit : y = {a3:.2f}.x^{n3:.2f}')
-plt.plot(xfit, yfit4, 'm--', label=f'Fit : y = {a4:.2f}.x^{n4:.2f}')
-plt.plot(xfit, yfit5, 'k--', label=f'Fit : y = {a5:.2f}.x^{n5:.2f}')
-plt.plot(xfit, yfit6, 'g--', label=f'Fit : y = {a6:.2f}.x^{n6:.2f}')
-plt.plot(xfit, yfit7, 'y--', label=f'Fit : y = {a7:.2f}.x^{n7:.2f}')
+plt.plot(xfit, yfit1, 'r--', label=rf'Fit : $y = {a:.2f} x^{{{n:.2f}}}$')
+plt.plot(xfit, yfit2, 'c--', label=rf'Fit : $y = {a2:.2f} x^{{{n2:.2f}}}$')
+plt.plot(xfit, yfit3, 'b--', label=rf'Fit : $y = {a3:.2f} x^{{{n3:.2f}}}$')
+plt.plot(xfit, yfit4, 'm--', label=rf'Fit : $y = {a4:.2f} x^{{{n4:.2f}}}$')
+plt.plot(xfit, yfit5, 'k--', label=rf'Fit : $y = {a5:.2f} x^{{{n5:.2f}}}$')
+plt.plot(xfit, yfit6, 'g--', label=rf'Fit : $y = {a6:.2f} x^{{{n6:.2f}}}$')
+plt.plot(xfit, yfit7, 'y--', label=rf'Fit : $y = {a7:.2f} x^{{{n7:.2f}}}$')
+
+plt.grid()
+plt.xlabel(r"$\log\left(\frac{\rho^*}{\rho_s}\right)$")
+plt.ylabel(r'log(E*/Es)')
+plt.legend(ncol=3)
+plt.title(r"Diagramme Gibson-Ashby log - log")
+
 
 """--- Plot n/kz ---"""
+
 plt.figure(figsize=(10,6))
-plt.plot(XKz, exp, 'o', color='r')
-
-# plt.grid()
-# plt.xlabel('dens')
-# plt.ylabel('E*/Es')
-# plt.legend()
-# plt.title("Diagramme Gibson-Ashby")
-
-# plt.show()
+plt.grid()
+plt.plot(XKz, exp, 'o', color='r', label=r'n/kz')
+plt.title(r'Diagramme n vs kz')
+plt.xlabel(r'kz')
+plt.ylabel(r'n')
